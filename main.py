@@ -35,7 +35,7 @@ def send_welcome(message):
 @bot.message_handler(commands=['new_day'])
 def new_day(message):
     general.new_day(message.from_user.id)
-    bot.send_message(message.from_user.id, "Начат новый день!")
+    bot.send_message(message.from_user.id, "Начат новый день")
 
 
 def load():
