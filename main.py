@@ -10,7 +10,7 @@ class User:
         self.today = {0: 0}
         self.today_count = {0: {0: 0}}
 
-    def plus_call(self, plus=0, user_id=0):
+    def plus_call(self, plus, user_id):
         self.today_count[user_id][self.today[user_id]] += plus
         pickle.dump(self.today_count, open('save.txt', 'wb'))
 
@@ -54,12 +54,10 @@ def call(message):
     act = str(test[0])
     if act == '+':
         general.plus_call(count_call, message.from_user.id)
-        bot.send_message(message.from_user.id,
-                         general.today_count[message.from_user.id][general.today[message.from_user.id]])
+        bot.send_message(message.from_user.id, general.today_count[message.from_user.id][general.today[message.from_user.id]])
     elif act == '-':
         general.minus_call(count_call, message.from_user.id)
-        bot.send_message(message.from_user.id,
-                         general.today_count[message.from_user.id][general.today[message.from_user.id]])
+        bot.send_message(message.from_user.id, general.today_count[message.from_user.id][general.today[message.from_user.id]])
     else:
         bot.send_message(message.from_user.id, 'Ошибка: Формат ввода +/- число')
 
