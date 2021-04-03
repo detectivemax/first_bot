@@ -1,9 +1,10 @@
 import telebot
 import pickle
+import random
 
 # 1743116356:AAFUb9wRDF5xXHBHWCKITUeAX7RySsrbeb8
 bot = telebot.TeleBot('1743116356:AAFUb9wRDF5xXHBHWCKITUeAX7RySsrbeb8', parse_mode=None)
-
+greet = ['Ну ты лютый как Тайкус', 'А малыш Джимми', 'Может лучше на шашлычки с Империем?', 'Время собирать души', 'Смотрите, кто воскрес']
 
 class User:
     def __init__(self):
@@ -35,7 +36,7 @@ def send_welcome(message):
 @bot.message_handler(commands=['new_day'])
 def new_day(message):
     general.new_day(message.from_user.id)
-    bot.send_message(message.from_user.id, "Начат новый день")
+    bot.send_message(message.from_user.id, random.choice(greet))
 
 
 def load():
